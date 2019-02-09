@@ -1,6 +1,6 @@
 # The Design
 
-## Driver Manager
+## FCN001 Manage Drivers
 
 `com.lemsst.bangsamoro.core.driver`
 
@@ -8,13 +8,13 @@
 
 This sub-package will manage WebDriver objects. This will use Factory Design pattern. The design is largely based on [this article](https://www.logigear.com/blog/test-automation/building-a-selenium-framework-from-a-to-z/).
 
-## Data Reader
+## FCN002 Manage Data 
 
 `com.lemsst.bangsamoro.core.data`
 
-Will support test data from: XML, YAML, Excel
+Will support test data coming from Excel, etc.
 
-## Report Management
+## FCN003 Manage Reports
 
 
 ## Coming soon
