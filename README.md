@@ -1,5 +1,7 @@
 # Bangsamoro (An Automation Framework), yup!
 
+NOTE: THERE WILL BE NO CODES FOUND IN THIS PROJECT THAT CANNOT BE FOUND IN THE PUBLIC DOMAIN. 
+
 FYI: The name has nothing to do with the project. The Philippines' Bangsamoro Organic Law was ratified around the same time I created this project hence the name. :p
 
 ## Technologies to use
