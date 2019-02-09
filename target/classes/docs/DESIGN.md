@@ -24,6 +24,4 @@ Refer to https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp
 
 ## FCN006 Remote Execution
 
-## FCN007 Page Object Model
-
-## FCN008 Cucumber Integration
+## Coming soon
