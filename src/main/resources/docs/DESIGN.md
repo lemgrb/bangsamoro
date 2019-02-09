@@ -1,6 +1,6 @@
 # The Design
 
-## FCN001 Drivers
+## Drivers
 
 `com.lemsst.bangsamoro.core.driver`
 
@@ -8,22 +8,38 @@
 
 This sub-package will manage WebDriver objects. This will use Factory Design pattern. The design is largely based on [this article](https://www.logigear.com/blog/test-automation/building-a-selenium-framework-from-a-to-z/).
 
-## FCN002 Data 
+### TODO
+
+1. Desired capabilities
+2. Remote
+3. Other browsers
+
+## Data 
 
 `com.lemsst.bangsamoro.core.data`
 
 Will support test data coming from Excel, etc.
 
-## FCN003 Reports
+## Reports
 
-## FCN004 Waits
+## Waits
+
+TLDR;
+
+> Forget that Implicit Wait exists! :p
 
 Refer to https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp
 
-## FCN005 Parallel Execution
+Refer to the answers in https://stackoverflow.com/questions/10404160/when-to-use-explicit-wait-vs-implicit-wait-in-selenium-webdriver
 
-## FCN006 Remote Execution
 
-## FCN007 Page Object Model
 
-## FCN008 Cucumber Integration
+## Parallel Execution
+
+## Remote Execution
+
+## Page Object Model
+
+## Cucumber Integration
+
+## Taking Screenshots
