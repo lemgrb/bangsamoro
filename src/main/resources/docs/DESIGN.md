@@ -32,14 +32,22 @@ Refer to https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp
 
 Refer to the answers in https://stackoverflow.com/questions/10404160/when-to-use-explicit-wait-vs-implicit-wait-in-selenium-webdriver
 
-
-
 ## Parallel Execution
 
 ## Remote Execution
 
 ## Page Object Model
 
-## Cucumber Integration
+## Cucumber Integration (Annotations) [IN PROGRESS]
+
+### TODO:
+- Read https://rlogiacco.wordpress.com/2016/01/18/cucumber-is-not-a-testing-framework/
+
+### ISSUES
+- How to run Cucumber features via mvn?
+
+## Cucumber Integration (Java 8 Lambda Expressions)
 
 ## Taking Screenshots
+
+## testng.xml Settings
