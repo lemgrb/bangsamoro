@@ -4,10 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends Page {
-
-    private String url = "http://newtours.demoaut.com/";
 
     @FindBy(name="userName")
     private WebElement userName;
@@ -18,19 +18,40 @@ public class LoginPage extends Page {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        LOGGER.info("Inside LoginPage constructor");
+        if(!isPageLoaded())
+            throw new IllegalStateException("Page has not loaded.");
     }
 
-    public void signIn(String username, String password) {
-        LOGGER.info("Inside LoginPage.signIn(username,password);");
-        this.userName.sendKeys(username);
+    public LoginPage typeUsername(String username) {
+        userName.sendKeys(username);
+        return this;
+    }
+
+    public LoginPage typePassword(String password) {
         this.password.sendKeys(password);
+        return this;
+    }
+
+    public FlightFinderPage clickSignIn() {
         signInButton.click();
+        return new FlightFinderPage(driver);
+    }
+
+    public LoginPage clickSignInExpectingError() {
+        signInButton.click();
+        return new LoginPage(driver);
+    }
+
+    public FlightFinderPage signIn(String username, String password) {
+        typeUsername(username);
+        typePassword(password);
+        return clickSignIn();
     }
 
     @Override
     public boolean isPageLoaded() {
-        LOGGER.info("Inside LoginPage.isPageLoaded();");
+        WebDriverWait waiter = new WebDriverWait(driver, 10);
+        WebElement element = waiter.until(ExpectedConditions.elementToBeClickable(signInButton));
         return signInButton.isDisplayed();
     }
 }

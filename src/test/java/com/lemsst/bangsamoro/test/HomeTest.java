@@ -14,48 +14,36 @@ import org.testng.asserts.SoftAssert;
 
 public class HomeTest {
 
-    private static final Logger LOGGER = LogManager.getLogger(HomeTest.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger("HomeTest");
     private WebDriverManager driverManager;
     private WebDriver driver;
     private SoftAssert softAssert;
+    private final String BASE_URL = "http://newtours.demoaut.com/";
 
     @BeforeClass
     public void initClass() {
-        LOGGER.info("Is now inside initClass()");
-
         softAssert = new SoftAssert();
-        LOGGER.info("softAssert instantiated");
-
         driverManager = DriverFactory.getDriverManager(DriverType.CHROME);
-        LOGGER.info("driverManager has been assigned to " + driverManager.toString());
-
         driver = driverManager.getDriver();
-        LOGGER.info("driver has been assigned to " + driver.toString());
-    }
+        driver.get(BASE_URL);
+   }
 
     @AfterClass
     public void cleanMethod() {
         driverManager.quit();
-        LOGGER.info("driverManager.quit() called");
     }
 
     @Test
     public void signInTest() {
-        LOGGER.info("Inside signInTest()");
-        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-        LOGGER.info("Instantiate LoginPage");
-        FlightFinderPage flightFinderPage = PageFactory.initElements(driver, FlightFinderPage.class);
-        LOGGER.info("Instantiate FlightFinderPage");
+        LoginPage loginPage = new LoginPage(driver);
 
-        // Step 1: Visit the page and verify page is loaded
-        loginPage.visit();
-        softAssert.assertTrue(loginPage.isPageLoaded(),"Verify that the Login Page is displayed.");
+        // Step 1: Enter username and password then click 'Sign In'
+        FlightFinderPage flightFinderPage = loginPage.typeUsername("lmorningstar578")
+                .typePassword("Password123").clickSignIn();
         LOGGER.info("Step 1 completed");
 
-        // Step 2: Enter username and password then click 'Sign In'
-        loginPage.signIn("lmorningstar578","Password123");
-        softAssert.assertTrue(flightFinderPage.isPageLoaded(), "Verify that the logged in page is displayed when correct log in credentials are used.");
-        LOGGER.info("Step 2 completed");
+        // Step 2: Verify that Flight Finder Page is displayed
+        softAssert.assertTrue(flightFinderPage.isPageLoaded(), "Verify Flight Finder page is displayed.");
 
         softAssert.assertAll();
     }

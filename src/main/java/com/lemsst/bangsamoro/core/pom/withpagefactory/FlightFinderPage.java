@@ -17,12 +17,12 @@ public class FlightFinderPage extends Page {
 
     public FlightFinderPage(WebDriver driver) {
         super(driver);
-        LOGGER.info("Inside FlightFinderPage constructor");
+        if(!isPageLoaded())
+            throw new IllegalStateException("Page has not loaded.");
     }
 
     @Override
     public boolean isPageLoaded() {
-        LOGGER.info("Inside FlightFinderPage.isPageLoaded();");
         WebDriverWait waiter = new WebDriverWait(driver, 10);
         WebElement element = waiter.until(ExpectedConditions.elementToBeClickable(findFlightsButton));
         return findFlightsButton.isDisplayed();

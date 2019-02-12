@@ -71,8 +71,9 @@ Separate the element locator from the Test case
 - Built-in Selenium class
 - `@FindBy`
 - `@CacheLookup`
-
-[[1] Selenium Page Object Model Using Page Factory | Selenium Tutorial For Beginners | Edureka](https://www.youtube.com/watch?v=gBdKv3qeBIM)
+- [[1] Selenium Page Object Model Using Page Factory | Selenium Tutorial For Beginners | Edureka](https://www.youtube.com/watch?v=gBdKv3qeBIM)
+- [[2] PageFactory](https://github.com/SeleniumHQ/selenium/wiki/PageFactory)
+- [[3] Page Objects](https://raw.githubusercontent.com/wiki/SeleniumHQ/selenium/PageObjects.md)
 
 ## FEATURE002 Cucumber Integration (Annotations) [IN PROGRESS]
 

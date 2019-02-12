@@ -11,30 +11,17 @@ public abstract class Page {
 
     protected static final Logger LOGGER = LogManager.getLogger(Page.class.getName());
 
-    private final String BASE_URL = "http://newtours.demoaut.com/";
-
     protected WebDriver driver;
 
     public Page(WebDriver driver) {
-        LOGGER.info("Instantiating Page()");
         this.driver = driver;
-        LOGGER.info("this.driver has been assigned with " + driver.toString());
-
-    }
-
-    public void visit() {
-        LOGGER.info("inside Page.visit()");
-        driver.get(BASE_URL);
+        PageFactory.initElements(driver, this);
     }
 
     protected abstract boolean isPageLoaded();
 
-    protected void waitForJQuery() {
+    protected void waitForJQuery() {}
 
-    }
-
-    protected void waitForJS() {
-
-    }
+    protected void waitForJS() {}
 
 }
