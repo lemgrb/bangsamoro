@@ -2,7 +2,7 @@
 <suite name="Test Suite 1" verbose="1" >
     <test name="Some test">
         <classes>
-            <class name="com.lemsst.bangsamoro.test.StepdefsTest"/>
+            <class name="com.lemsst.bangsamoro.test.Stepdefs"/>
         </classes>
     </test>
 </suite>

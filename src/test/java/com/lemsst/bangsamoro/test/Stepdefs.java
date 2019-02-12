@@ -20,15 +20,15 @@ import org.testng.asserts.SoftAssert;
 
 import org.apache.logging.log4j.Logger;
 
-public class StepdefsTest {
+public class Stepdefs {
 
-    private static final Logger log = LogManager.getLogger(StepdefsTest.class);
+    private static final Logger log = LogManager.getLogger(Stepdefs.class);
     private static WebDriverManager driverManager;
     private static WebDriver driver;
     private static SoftAssert softAssert;
     private static String actual;
 
-    public StepdefsTest() {
+    public Stepdefs() {
         initClass();
         initMethod();
     }
