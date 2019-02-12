@@ -98,3 +98,5 @@ Separate the element locator from the Test case
 - ISSUE-001 | `Caused by: java.lang.OutOfMemoryError: Java heap space`. @BeforeClass and @AfterClass are called but the @Test method is not.
     - Resolution: PageFactory.initElements was used incorrectly.
         - ![](imgs/FIGURE-001.png)
+            - The real resolution is 
+                - ![](imgs/FIGURE-003.png)
