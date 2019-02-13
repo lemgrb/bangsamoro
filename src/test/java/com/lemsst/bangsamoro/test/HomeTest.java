@@ -34,11 +34,26 @@ public class HomeTest {
     }
 
     @Test
-    public void signInTest() {
+    public void signInTestUsingPageFactory() {
         LoginPage loginPage = new LoginPage(driver);
 
         // Step 1: Enter username and password then click 'Sign In'
         FlightFinderPage flightFinderPage = loginPage.typeUsername("lmorningstar578")
+                .typePassword("Password123").clickSignIn();
+        LOGGER.info("Step 1 completed");
+
+        // Step 2: Verify that Flight Finder Page is displayed
+        softAssert.assertTrue(flightFinderPage.isPageLoaded(), "Verify Flight Finder page is displayed.");
+
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void signInTestUsingBy() {
+        com.lemsst.bangsamoro.core.pom.LoginPage loginPage = new  com.lemsst.bangsamoro.core.pom.LoginPage(driver);
+
+        // Step 1: Enter username and password then click 'Sign In'
+        com.lemsst.bangsamoro.core.pom.FlightFinderPage flightFinderPage = loginPage.typeUsername("lmorningstar578")
                 .typePassword("Password123").clickSignIn();
         LOGGER.info("Step 1 completed");
 

@@ -18,8 +18,6 @@ public class LoginPage extends Page {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        if(!isPageLoaded())
-            throw new IllegalStateException("Page has not loaded.");
     }
 
     public LoginPage typeUsername(String username) {
@@ -50,7 +48,7 @@ public class LoginPage extends Page {
 
     @Override
     public boolean isPageLoaded() {
-        WebDriverWait waiter = new WebDriverWait(driver, 10);
+        WebDriverWait waiter = new WebDriverWait(driver, TIMEOUT_IN_SECONDS);
         WebElement element = waiter.until(ExpectedConditions.elementToBeClickable(signInButton));
         return signInButton.isDisplayed();
     }

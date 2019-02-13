@@ -65,7 +65,11 @@ Separate the element locator from the Test case
 |------------|
 |Calls methods in Page Class|
 
-### Page Factory
+### Bot-Style Test [Design Pattern]
+
+See https://github.com/SeleniumHQ/selenium/wiki/Bot-Style-Tests
+
+### Page Factory [Design pattern]
 `import org.openqa.selenium.support.PageFactory`
 
 - Built-in Selenium class
