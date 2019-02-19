@@ -2,7 +2,6 @@ package com.lemsst.bangsamoro.core.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
 
@@ -12,7 +11,7 @@ public class DriverFactory {
 
         LOGGER.info("getDriver("+type+") called.");
 
-        WebDriverManager webDriverManager = null;
+        WebDriverManager webDriverManager;
         switch(type) {
             case CHROME:
                 webDriverManager = new ChromeDriverManager();

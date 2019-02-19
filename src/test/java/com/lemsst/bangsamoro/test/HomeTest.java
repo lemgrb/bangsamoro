@@ -1,5 +1,7 @@
 package com.lemsst.bangsamoro.test;
 
+import com.lemsst.bangsamoro.core.data.TestDataManager;
+import com.lemsst.bangsamoro.core.data.TestScenarioData;
 import com.lemsst.bangsamoro.core.driver.DriverFactory;
 import com.lemsst.bangsamoro.core.driver.DriverType;
 import com.lemsst.bangsamoro.core.driver.WebDriverManager;
@@ -8,13 +10,12 @@ import com.lemsst.bangsamoro.core.pom.withpagefactory.LoginPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 public class HomeTest {
 
-    private static final Logger LOGGER = LogManager.getLogger("HomeTest");
+    private static final Logger LOGGER = LogManager.getLogger(HomeTest.class.getName());
     private WebDriverManager driverManager;
     private WebDriver driver;
     private SoftAssert softAssert;
@@ -23,23 +24,33 @@ public class HomeTest {
     @BeforeClass
     public void initClass() {
         softAssert = new SoftAssert();
+   }
+
+    @BeforeMethod
+    public void initBrowser() {
         driverManager = DriverFactory.getDriverManager(DriverType.CHROME);
         driver = driverManager.getDriver();
         driver.get(BASE_URL);
-   }
+    }
 
-    @AfterClass
+    @AfterMethod
     public void cleanMethod() {
         driverManager.quit();
     }
 
-    @Test
-    public void signInTestUsingPageFactory() {
+    /**
+     * One @Test is one test scenario
+     */
+    @Test(testName = "Successful log in")
+    public void TS001() {
+        // Test Data
+        TestScenarioData testData = TestDataManager.getScenarioTestData("TS001.yaml");
+
         LoginPage loginPage = new LoginPage(driver);
 
         // Step 1: Enter username and password then click 'Sign In'
-        FlightFinderPage flightFinderPage = loginPage.typeUsername("lmorningstar578")
-                .typePassword("Password123").clickSignIn();
+        FlightFinderPage flightFinderPage = loginPage.typeUsername(testData.getData().get("username"))
+                .typePassword(testData.getData().get("password")).clickSignIn();
         LOGGER.info("Step 1 completed");
 
         // Step 2: Verify that Flight Finder Page is displayed
@@ -48,13 +59,34 @@ public class HomeTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Unsuccessful log in")
+    public void TS002() {
+        // Test Data
+        TestScenarioData testData = TestDataManager.getScenarioTestData("TS002.yaml");
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        // Step 1: Enter username and password then click 'Sign In'. Login page should still be displayed
+        LoginPage postLoginPage = loginPage.typeUsername(testData.getData().get("username"))
+                .typePassword(testData.getData().get("password")).clickSignInExpectingError();
+        LOGGER.info("Step 1 completed");
+
+        // Step 2: Verify the error message
+        softAssert.assertTrue(postLoginPage.isPageLoaded(), "Verify Flight Finder page is displayed.");
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = false)
     public void signInTestUsingBy() {
+        // Test Data
+        TestScenarioData testData = TestDataManager.getScenarioTestData("TS001.yaml");
+
         com.lemsst.bangsamoro.core.pom.LoginPage loginPage = new  com.lemsst.bangsamoro.core.pom.LoginPage(driver);
 
         // Step 1: Enter username and password then click 'Sign In'
-        com.lemsst.bangsamoro.core.pom.FlightFinderPage flightFinderPage = loginPage.typeUsername("lmorningstar578")
-                .typePassword("Password123").clickSignIn();
+        com.lemsst.bangsamoro.core.pom.FlightFinderPage flightFinderPage = loginPage.typeUsername(testData.getData().get("username"))
+                .typePassword(testData.getData().get("password")).clickSignIn();
         LOGGER.info("Step 1 completed");
 
         // Step 2: Verify that Flight Finder Page is displayed

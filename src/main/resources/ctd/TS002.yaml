@@ -1,0 +1,10 @@
+# Test Scenario
+---
+id: TS001
+description: Verify user can log in successfully with valid credentials
+
+## Add custom data here
+data:
+  username: lmorningstar578
+  password: WRONGPASSWORD
+  successMessage: Some error message
