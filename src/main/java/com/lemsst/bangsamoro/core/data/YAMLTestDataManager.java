@@ -6,13 +6,16 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.DataProvider;
 
 import java.io.File;
+import java.util.Iterator;
+import java.util.Map;
 
-public class TestDataManager {
+public class YAMLTestDataManager {
 
-    // TODO: Why not just pass the name of the class as String? e.g. "TestDataManager"
-    private static final Logger LOGGER = LogManager.getLogger(TestDataManager.class.getName());
+    // TODO: Why not just pass the name of the class as String? e.g. "YAMLTestDataManager"
+    private static final Logger LOGGER = LogManager.getLogger(YAMLTestDataManager.class.getName());
 
     /**
      * TODO: Outside the IDE, how to ensure program can read from the resource path?
@@ -32,4 +35,5 @@ public class TestDataManager {
 
         return testScenarioData;
     }
+
 }

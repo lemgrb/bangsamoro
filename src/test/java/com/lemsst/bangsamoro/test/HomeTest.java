@@ -1,6 +1,7 @@
 package com.lemsst.bangsamoro.test;
 
-import com.lemsst.bangsamoro.core.data.TestDataManager;
+import com.lemsst.bangsamoro.core.data.ExcelDataManager;
+import com.lemsst.bangsamoro.core.data.YAMLTestDataManager;
 import com.lemsst.bangsamoro.core.data.TestScenarioData;
 import com.lemsst.bangsamoro.core.driver.DriverFactory;
 import com.lemsst.bangsamoro.core.driver.DriverType;
@@ -41,10 +42,10 @@ public class HomeTest {
     /**
      * One @Test is one test scenario
      */
-    @Test(testName = "Successful log in")
-    public void TS001() {
+    @Test(testName = "Successful log in", enabled = false)
+    public void SCENARIO_001() {
         // Test Data
-        TestScenarioData testData = TestDataManager.getScenarioTestData("TS001.yaml");
+        TestScenarioData testData = YAMLTestDataManager.getScenarioTestData("TS001.yaml");
 
         LoginPage loginPage = new LoginPage(driver);
 
@@ -59,10 +60,26 @@ public class HomeTest {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Unsuccessful log in")
-    public void TS002() {
+    @Test(testName = "Successful log in", dataProviderClass = ExcelDataManager.class, dataProvider = "dp")
+    public void SCENARIO_002(String username, String password) {
+        LoginPage loginPage = new LoginPage(driver);
+
+        // Step 1: Enter username and password then click 'Sign In'
+        FlightFinderPage flightFinderPage = loginPage.typeUsername(username)
+                .typePassword(password).clickSignIn();
+        LOGGER.info("Step 1 completed");
+
+        // Step 2: Verify that Flight Finder Page is displayed
+        softAssert.assertTrue(flightFinderPage.isPageLoaded(), "Verify Flight Finder page is displayed.");
+
+        softAssert.assertAll();
+    }
+
+
+    @Test(testName = "Unsuccessful log in", enabled = false)
+    public void SCENARIO_003() {
         // Test Data
-        TestScenarioData testData = TestDataManager.getScenarioTestData("TS002.yaml");
+        TestScenarioData testData = YAMLTestDataManager.getScenarioTestData("TS002.yaml");
 
         LoginPage loginPage = new LoginPage(driver);
 
@@ -80,7 +97,7 @@ public class HomeTest {
     @Test(enabled = false)
     public void signInTestUsingBy() {
         // Test Data
-        TestScenarioData testData = TestDataManager.getScenarioTestData("TS001.yaml");
+        TestScenarioData testData = YAMLTestDataManager.getScenarioTestData("TS001.yaml");
 
         com.lemsst.bangsamoro.core.pom.LoginPage loginPage = new  com.lemsst.bangsamoro.core.pom.LoginPage(driver);
 
