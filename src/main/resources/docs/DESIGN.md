@@ -2,6 +2,14 @@
 
 The demo Application Under Test (AUT) url would be: http://newtours.demoaut.com/
 
+## Key Design decisions
+
+- TestNG @Test method represents a Test Condition?
+- So how to handle data-driven test? For data driven test -- what's a condition? step? scenario?
+- Is 1 Test Scenario: 1 Test class (end to end)?
+  - If so, are test cases dependent of each other?
+- Does Browser open and close @BeforeMethod and @AfterMethod?
+
 ## FEATURE001 Drivers
 
 `com.lemsst.bangsamoro.core.driver`
@@ -21,6 +29,12 @@ This sub-package will manage WebDriver objects. This will use Factory Design pat
 `com.lemsst.bangsamoro.core.data`
 
 Will support test data coming from Excel, etc.
+
+### (Apache POI](https://poi.apache.org/components/spreadsheet/)
+- To read xlsx, use XSSF implementation of the POI library.
+- If you're modifying spreadsheet data then use the usermodel api.
+    - Higher memory footprint
+    - Easier to use
 
 ## Reports
 

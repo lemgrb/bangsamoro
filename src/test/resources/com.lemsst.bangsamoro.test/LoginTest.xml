@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="PRODUCT-TEST" verbose="2" thread-count="4">
+    <parameter name="DATA_SHEET_NAME" value="MODULE.xlsx"/>
+    <test name="MODULE">
+        <classes>
+            <class name="com.lemsst.bangsamoro.test.LoginTest"/>
+        </classes>
+    </test>
+</suite>
+
