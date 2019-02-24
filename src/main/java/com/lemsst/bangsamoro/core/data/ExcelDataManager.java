@@ -1,15 +1,15 @@
 package com.lemsst.bangsamoro.core.data;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.ITest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
@@ -17,7 +17,6 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -26,7 +25,7 @@ import java.util.Map;
 
 public class ExcelDataManager {
 
-    private static final Logger LOGGER = LogManager.getLogger(ExcelDataManager.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExcelDataManager.class);
 
     private final static String PATH = "src/main/resources/common_test_data/";
 
@@ -43,6 +42,14 @@ public class ExcelDataManager {
     }
 
     public static void main(String[] args) throws Exception {
+        // import org.apache.logging.log4j.core.LoggerContext;
+
+        LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
+        File file = new File("src/log4j2.xml");
+
+        // this will force a reconfiguration
+        context.setConfigLocation(file.toURI());
+
         getTestDataPerSheet("MODULE.xlsx", "TS.001");
     }
 
@@ -109,7 +116,7 @@ public class ExcelDataManager {
         // Skip column header
         Object[][] newTestData = new Object[testData.length-1][];
 
-        System.out.println("[TESTDATA]: " + Arrays.deepToString(testData));
+        LOGGER.info("[TESTDATA]: " + Arrays.deepToString(testData));
 
         // Skip column header
         for(int i=1; i<testData.length; i++) {
@@ -121,7 +128,7 @@ public class ExcelDataManager {
             newTestData[i-1][0] = rowData;
         }
 
-        System.out.println("[CONVERTEDTESTDATA]: " + Arrays.deepToString(newTestData));
+        LOGGER.info("[CONVERTEDTESTDATA]: " + Arrays.deepToString(newTestData));
 
         return newTestData;
 

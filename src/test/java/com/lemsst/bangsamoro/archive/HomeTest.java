@@ -1,4 +1,4 @@
-package com.lemsst.bangsamoro.test;
+package com.lemsst.bangsamoro.archive;
 
 import com.lemsst.bangsamoro.core.data.ExcelDataManager;
 import com.lemsst.bangsamoro.core.data.TestScenarioData;
@@ -40,11 +40,11 @@ public class HomeTest {
     }
 
     /**
-     * One @Test is one test scenario
+     * One @CucumberTest is one test scenario
      */
     @Test(testName = "Successful log in", enabled = false)
     public void SCENARIO_001() {
-        // Test Data
+        // CucumberTest Data
         TestScenarioData testData = YAMLTestDataManager.getScenarioTestData("TS001.yaml");
 
         LoginPage loginPage = new LoginPage(driver);
@@ -78,7 +78,7 @@ public class HomeTest {
 
     @Test(testName = "Unsuccessful log in", enabled = false)
     public void SCENARIO_003() {
-        // Test Data
+        // CucumberTest Data
         TestScenarioData testData = YAMLTestDataManager.getScenarioTestData("TS002.yaml");
 
         LoginPage loginPage = new LoginPage(driver);
@@ -96,7 +96,7 @@ public class HomeTest {
 
     @Test(enabled = false)
     public void signInTestUsingBy() {
-        // Test Data
+        // CucumberTest Data
         TestScenarioData testData = YAMLTestDataManager.getScenarioTestData("TS001.yaml");
 
         com.lemsst.bangsamoro.core.pom.LoginPage loginPage = new  com.lemsst.bangsamoro.core.pom.LoginPage(driver);

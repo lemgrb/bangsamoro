@@ -1,7 +1,6 @@
-package com.lemsst.bangsamoro.test;
+package com.lemsst.bangsamoro.archive;
 
-import com.lemsst.bangsamoro.core.data.TestScenario;
-import com.lemsst.bangsamoro.core.data.YAMLDataManager;
+import com.lemsst.bangsamoro.core.data.ExcelDataManager;
 import com.lemsst.bangsamoro.core.driver.DriverFactory;
 import com.lemsst.bangsamoro.core.driver.DriverType;
 import com.lemsst.bangsamoro.core.driver.WebDriverManager;
@@ -16,9 +15,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class YAMLDataReaderTest {
+import java.util.HashMap;
 
-    private static final Logger LOGGER = LogManager.getLogger(YAMLDataReaderTest.class.getName());
+public class LoginTest {
+
+    private static final Logger LOGGER = LogManager.getLogger(LoginTest.class.getName());
     private WebDriverManager driverManager;
     private WebDriver driver;
     private SoftAssert softAssert;
@@ -27,7 +28,7 @@ public class YAMLDataReaderTest {
     @BeforeClass
     public void initClass() {
         softAssert = new SoftAssert();
-   }
+    }
 
     @BeforeMethod
     public void initBrowser() {
@@ -41,14 +42,14 @@ public class YAMLDataReaderTest {
         driverManager.quit();
     }
 
-    @Test(testName = "Successful log in", dataProviderClass = YAMLDataManager.class, dataProvider = "dp")
-    @TestScenario(name="SCENARIO_002")
-    public void SCENARIO_002(String username, String password) {
+
+    @Test(description = "Log in successfully", dataProviderClass = ExcelDataManager.class, dataProvider = "dp")
+    public void TS_001(HashMap<String,String> testData) {
         LoginPage loginPage = new LoginPage(driver);
 
         // Step 1: Enter username and password then click 'Sign In'
-        FlightFinderPage flightFinderPage = loginPage.typeUsername(username)
-                .typePassword(password).clickSignIn();
+        FlightFinderPage flightFinderPage = loginPage.typeUsername(testData.get("USERNAME"))
+                .typePassword(testData.get("PASSWORD")).clickSignIn();
         LOGGER.info("Step 1 completed");
 
         // Step 2: Verify that Flight Finder Page is displayed
@@ -56,6 +57,4 @@ public class YAMLDataReaderTest {
 
         softAssert.assertAll();
     }
-
-
 }

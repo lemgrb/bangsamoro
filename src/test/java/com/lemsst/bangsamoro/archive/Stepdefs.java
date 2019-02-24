@@ -1,4 +1,4 @@
-package com.lemsst.bangsamoro.test;
+package com.lemsst.bangsamoro.archive;
 
 import com.lemsst.bangsamoro.core.driver.DriverFactory;
 import com.lemsst.bangsamoro.core.driver.DriverType;
