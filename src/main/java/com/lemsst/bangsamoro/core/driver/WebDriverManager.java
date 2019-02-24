@@ -16,8 +16,10 @@ public abstract class WebDriverManager {
     }
 
     public WebDriver getDriver() {
-        if(driver==null)
+        if(driver==null) {
             create();
+            driver.manage().window().maximize();
+        }
         return driver;
     }
 
