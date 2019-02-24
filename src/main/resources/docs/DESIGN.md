@@ -97,6 +97,7 @@ See https://github.com/SeleniumHQ/selenium/wiki/Bot-Style-Tests
 
 ### TODO:
 - Read https://rlogiacco.wordpress.com/2016/01/18/cucumber-is-not-a-testing-framework/
+- Watch https://www.youtube.com/watch?v=4H7UBOWGIFU&list=PL6tu16kXT9Pqr70SZlwcmTSAfOw_0Qj3R&index=3
 
 ### ISSUES
 - How to run Cucumber features via mvn?
